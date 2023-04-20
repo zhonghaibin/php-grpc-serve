@@ -34,9 +34,11 @@ root
 ```
 
 安装
+命令行输入 
 composere install
 
 获取 rr.exe 可执行文件
+命令行输入 
 ./vendor/bin/rr get-binary
 
 启动服务
