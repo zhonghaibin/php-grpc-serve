@@ -1,0 +1,36 @@
+{
+  "name": "grpc/service",
+  "description": "Base Service Grpc Server",
+  "require": {
+    "php": "^8.1",
+    "grpc/grpc": "^1.36",
+    "ext-json": "*",
+    "spiral/roadrunner-grpc": "*",
+    "spiral/roadrunner-services": "^1.0",
+    "spiral/roadrunner-jobs": "^3.0"
+  },
+  "require-dev": {
+    "symfony/dotenv": "^6.1",
+    "jetbrains/phpstorm-attributes": "^1.0",
+    "phpunit/phpunit": "^9.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "app/",
+      "Services\\": [
+        "grpc/generated/Services"
+      ],
+      "GPBMetadata\\": "grpc/generated/GPBMetadata"
+    }
+  },
+  "scripts": {
+    "post-root-package-install": [
+      "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+    ],
+    "post-create-project-cmd": [
+        "@php ./vendor/bin/rr get-binary"
+    ]
+  },
+  "minimum-stability": "stable",
+  "prefer-stable": true
+}

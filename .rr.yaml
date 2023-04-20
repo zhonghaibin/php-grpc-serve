@@ -1,0 +1,39 @@
+version: "2.7"
+
+rpc:
+  listen: "tcp://127.0.0.1:6001"
+
+grpc:
+  listen: "tcp://0.0.0.0:8000"
+  proto:
+    - "./grpc/protos/base/hello-world.proto"
+  max_send_msg_size: 50
+  max_recv_msg_size: 50
+  max_connection_idle: 0s
+  max_connection_age: 0s
+  max_connection_age_grace: 0s
+  max_concurrent_streams: 10
+  ping_time: 1s
+  timeout: 200s
+
+jobs:
+  pipeline_size: 100000
+  consume: [ "local" ]
+  pipelines:
+    local:
+      driver: memory
+      config:
+        priority: 10
+        prefetch: 10
+
+server:
+  command: "php serve.php"
+  on_init:
+    command: "php serve.php init:initServer"
+  relay: "pipes"
+  relay_timeout: "20s"
+
+
+service:
+  env_init:
+    command: "php serve.php init:registerWatch"
