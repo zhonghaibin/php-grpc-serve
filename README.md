@@ -6,7 +6,7 @@
 
 https://roadrunner.dev/docs/plugins-grpc/2023.x/en
 
-1 根据自己的需求创建Protobuf的 simple.proto  文件
+1 根据自己的需求创建Protobuf的 hello-world.proto  文件
 
 2 通过 hello-world.proto 生成 php 类文件
 
@@ -33,7 +33,11 @@ root
 ├ └─protos            //所有proto存在这里
 ```
 
+安装
+composere install
 
+获取 rr.exe 可执行文件
+./vendor/bin/rr get-binary
 
 启动服务
 ./rr.exe serve
