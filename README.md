@@ -1,15 +1,33 @@
-#通过php实现grpc服务端
-我用的php版本：
-    php 8.2
+## 通过php实现grpc服务端
+php版本：
+php >= 8.1
 
-参考文档：
+## 安装
+```
+composer install
+
+获取 rr.exe 可执行文件
+./vendor/bin/rr get-binary
+
+启动服务
+./rr.exe serve
+```
+## 客户端 
+我这里用的是ApiPost 支持grpc测试
+```
+    打开apipost客户端，新建grpc,选择导入proto  
+
+    选择项目目录的 grpc/protos/base/hello-world.proto 文件
+```
+
+## 参考文档：
 
 https://roadrunner.dev/docs/plugins-grpc/2023.x/en
 
-1 根据自己的需求创建Protobuf的 hello-world.proto  文件
+1 根据自己的需求创建 hello-world.proto  文件
 
 2 通过 hello-world.proto 生成 php 类文件
-
+```
     这里需要用到下载两个可执行文件编译，我这里用的是win10：
     protoc.exe 和 protoc-gen-php-grpc.exe 
     下载地址：https://github.com/roadrunner-server/roadrunner/releases
@@ -17,6 +35,7 @@ https://roadrunner.dev/docs/plugins-grpc/2023.x/en
     ./protoc.exe --plugin=protoc-gen-php-grpc.exe --php_out=./ --php-grpc_out=./ hello-world.proto
     会在当前目录下生成两个文件夹：GPBMetadata 和 Services
     把生成好的文件夹复制到 项目目录 grpc/generated 下
+```
 ```
 root
 ├─app
@@ -33,18 +52,4 @@ root
 ├ └─protos            //所有proto存在这里
 ```
 
-安装
-composere install
-
-获取 rr.exe 可执行文件
-./vendor/bin/rr get-binary
-
-启动服务
-./rr.exe serve
-
-客户端 我这里用的是ApiPost 支持grpc测试  
-
-    打开apipost客户端，新建grpc,选择导入proto  
-
-    选择项目目录的 grpc/protos/base/hello-world.proto 文件
 
