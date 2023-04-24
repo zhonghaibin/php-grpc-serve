@@ -1,0 +1,19 @@
+version: '3'
+services:
+  hello-world-service:
+    restart: always
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    env_file: .env
+    extra_hosts:
+      - "consul:10.10.10.2"
+      - "redis:10.10.10.3"
+    dns: 10.10.10.2
+    ports:
+      - "8000:8000"
+
+networks:
+  default:
+    name: local
+    external: true
