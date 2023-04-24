@@ -1,5 +1,5 @@
 {
-  "name": "grpc/service",
+  "name": "zhonghaibin/grpc-service",
   "description": "Base Service Grpc Server",
   "require": {
     "php": "^8.1",
